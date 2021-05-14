@@ -87,12 +87,7 @@ public class AddTeacher extends AppCompatActivity {
 
         addTeacherImage.setOnClickListener(v -> openGallery());
 
-        addTeacherBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkValidation();
-            }
-        });
+        addTeacherBtn.setOnClickListener(v -> checkValidation());
 
     }
 

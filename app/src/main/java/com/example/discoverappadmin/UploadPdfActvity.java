@@ -66,18 +66,15 @@ public class UploadPdfActvity extends AppCompatActivity {
 
         addPdf.setOnClickListener((view) -> { openGallery(); });
 
-        uploadPdfBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                title = pdfTitle.getText().toString();
-                if(title.isEmpty()) {
-                    pdfTitle.setError(("Empty"));
-                    pdfTitle.requestFocus();
-                }else if(pdfData == null) {
-                    Toast.makeText(UploadPdfActvity.this, "Please select a PDF", Toast.LENGTH_SHORT).show();
-                }else {
-                    uploadPdf();
-                }
+        uploadPdfBtn.setOnClickListener(v -> {
+            title = pdfTitle.getText().toString();
+            if(title.isEmpty()) {
+                pdfTitle.setError(("Empty"));
+                pdfTitle.requestFocus();
+            }else if(pdfData == null) {
+                Toast.makeText(UploadPdfActvity.this, "Please select a PDF", Toast.LENGTH_SHORT).show();
+            }else {
+                uploadPdf();
             }
         });
     }
@@ -88,14 +85,11 @@ public class UploadPdfActvity extends AppCompatActivity {
         pd.show();
         StorageReference reference = storageReference.child("pdf/"+ pdfName + "-" + System.currentTimeMillis() + ".pdf");
         reference.putFile(pdfData)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                        while (!uriTask.isComplete());
-                        Uri uri = uriTask.getResult();
-                        uploadData(String.valueOf(uri));
-                    }
+                .addOnSuccessListener(taskSnapshot -> {
+                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                    while (!uriTask.isComplete());
+                    Uri uri = uriTask.getResult();
+                    uploadData(String.valueOf(uri));
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
@@ -119,12 +113,9 @@ public class UploadPdfActvity extends AppCompatActivity {
                 Toast.makeText(UploadPdfActvity.this, "Pdf uploaded successfully", Toast.LENGTH_SHORT).show();
                 pdfTitle.setText("");
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                pd.dismiss();
-                Toast.makeText(UploadPdfActvity.this, "Failed to Upload Pdf", Toast.LENGTH_SHORT).show();
-            }
+        }).addOnFailureListener(e -> {
+            pd.dismiss();
+            Toast.makeText(UploadPdfActvity.this, "Failed to Upload Pdf", Toast.LENGTH_SHORT).show();
         });
     }
 
