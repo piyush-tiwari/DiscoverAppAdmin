@@ -1,4 +1,4 @@
-package com.example.discoverappadmin;
+package com.example.discoverappadmin.notice;
 
 public class NoticeData {
     String title, image, date, time, key;

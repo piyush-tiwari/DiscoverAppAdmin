@@ -110,7 +110,7 @@ public class UpdateTeacherActivity extends AppCompatActivity {
             updateTeacherPost.setError("Empty");
             updateTeacherPost.requestFocus();
         }else if(bitmap == null) {
-            updateData("");
+            updateData(image);
         }else {
             uploadImage();
         }
@@ -163,29 +163,16 @@ public class UpdateTeacherActivity extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(UpdateTeacherActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-            }
-        });
+        }).addOnFailureListener(e -> Toast.makeText(UpdateTeacherActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show());
     }
 
     private void deleteData() {
-        reference.child(category).child(uniqueKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(UpdateTeacherActivity.this, "Faculty info deleted", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(UpdateTeacherActivity.this, UpdateFaculty.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(UpdateTeacherActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-            }
-        });
+        reference.child(category).child(uniqueKey).removeValue().addOnCompleteListener(task -> {
+            Toast.makeText(UpdateTeacherActivity.this, "Faculty info deleted", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(UpdateTeacherActivity.this, UpdateFaculty.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }).addOnFailureListener(e -> Toast.makeText(UpdateTeacherActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show());
     }
 
     private void openGallery() {
