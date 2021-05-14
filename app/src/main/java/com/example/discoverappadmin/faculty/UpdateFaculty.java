@@ -84,7 +84,7 @@ public class UpdateFaculty extends AppCompatActivity {
                     }
                     csDepartment.setHasFixedSize(true);
                     csDepartment.setLayoutManager(new LinearLayoutManager(UpdateFaculty.this));
-                    adapter = new TeacherAdapter(list1, UpdateFaculty.this);
+                    adapter = new TeacherAdapter(list1, UpdateFaculty.this, "Computer Science");
                     csDepartment.setAdapter(adapter);
                 }
             }
@@ -114,7 +114,7 @@ public class UpdateFaculty extends AppCompatActivity {
                     }
                     mncDepartment.setHasFixedSize(true);
                     mncDepartment.setLayoutManager(new LinearLayoutManager(UpdateFaculty.this));
-                    adapter = new TeacherAdapter(list2, UpdateFaculty.this);
+                    adapter = new TeacherAdapter(list2, UpdateFaculty.this, "Mathematics");
                     mncDepartment.setAdapter(adapter);
                 }
             }
@@ -144,7 +144,7 @@ public class UpdateFaculty extends AppCompatActivity {
                     }
                     eeDepartment.setHasFixedSize(true);
                     eeDepartment.setLayoutManager(new LinearLayoutManager(UpdateFaculty.this));
-                    adapter = new TeacherAdapter(list3, UpdateFaculty.this);
+                    adapter = new TeacherAdapter(list3, UpdateFaculty.this, "Electrical");
                     eeDepartment.setAdapter(adapter);
                 }
             }
@@ -174,7 +174,7 @@ public class UpdateFaculty extends AppCompatActivity {
                     }
                     meDepartment.setHasFixedSize(true);
                     meDepartment.setLayoutManager(new LinearLayoutManager(UpdateFaculty.this));
-                    adapter = new TeacherAdapter(list4, UpdateFaculty.this);
+                    adapter = new TeacherAdapter(list4, UpdateFaculty.this, "Mechanical");
                     meDepartment.setAdapter(adapter);
                 }
             }
