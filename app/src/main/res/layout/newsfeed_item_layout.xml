@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:text="Admin College App"
                 android:layout_marginLeft="16dp"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="@color/textColor"/>
 
             <com.google.android.material.button.MaterialButton
@@ -49,9 +49,9 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="400dp"
             android:id="@+id/deleteNoticeImage"
-            android:scaleType="fitXY" />
+            android:scaleType="centerCrop" />
 
     </LinearLayout>
 

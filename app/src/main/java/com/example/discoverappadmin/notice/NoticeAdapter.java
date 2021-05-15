@@ -58,12 +58,11 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
         holder.deleteNotice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("Are you sure you want to delete this notice?");
                 builder.setCancelable(true);
                 builder.setPositiveButton(
-                        "OK",
+                        "Confirm",
                         (dialog, which) -> {
                             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Notice");
                             reference.child(currentItem.getKey()).removeValue()
